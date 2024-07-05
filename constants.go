@@ -1,4 +1,4 @@
-package physicalConstants
+package main
 
 import (
 	"math"
