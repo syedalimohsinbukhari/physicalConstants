@@ -5,23 +5,23 @@ import (
 	"math"
 )
 
+const PI_ = math.Pi
+const OHM_ = "\u03A9"
+
+var pow = math.Pow
+
 type physicalConstant struct {
 	Value float64
 	Unit  string
-}
-
-func (p physicalConstant) CustomPhysicalConstant(Value float64, Unit string) physicalConstant {
-	return physicalConstant{Value: Value, Unit: Unit}
 }
 
 func (p physicalConstant) Display() {
 	fmt.Println(p.Value, p.Unit)
 }
 
-const PI_ = math.Pi
-const OHM_ = "\u03A9"
-
-var pow = math.Pow
+func CustomPhysicalConstant(Value float64, Unit string) physicalConstant {
+	return physicalConstant{Value: Value, Unit: Unit}
+}
 
 var ElectronMass = physicalConstant{
 	Value: 9.1093837139e-31,
