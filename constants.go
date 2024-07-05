@@ -5,12 +5,16 @@ import (
 	"math"
 )
 
-type PhysicalConstant struct {
+type physicalConstant struct {
 	Value float64
 	Unit  string
 }
 
-func (p PhysicalConstant) Display() {
+func (p physicalConstant) CustomPhysicalConstant(Value float64, Unit string) physicalConstant {
+	return physicalConstant{Value: Value, Unit: Unit}
+}
+
+func (p physicalConstant) Display() {
 	fmt.Println(p.Value, p.Unit)
 }
 
@@ -19,212 +23,212 @@ const OHM_ = "\u03A9"
 
 var pow = math.Pow
 
-var ElectronMass = PhysicalConstant{
+var ElectronMass = physicalConstant{
 	Value: 9.1093837139e-31,
 	Unit:  "kg",
 }
 
-var ProtonMass = PhysicalConstant{
+var ProtonMass = physicalConstant{
 	Value: 1.67262192595e-27,
 	Unit:  "kg",
 }
 
-var NeutronMass = PhysicalConstant{
+var NeutronMass = physicalConstant{
 	Value: 1.67492750056e-27,
 	Unit:  "kg",
 }
 
-var MuonMass = PhysicalConstant{
+var MuonMass = physicalConstant{
 	Value: 1.883531627e-28,
 	Unit:  "kg",
 }
 
-var TopQuarkMass = PhysicalConstant{
+var TopQuarkMass = physicalConstant{
 	Value: 3.0784e-25,
 	Unit:  "kg",
 }
 
-var ProtonElectronMassRatio = PhysicalConstant{
+var ProtonElectronMassRatio = physicalConstant{
 	Value: ProtonMass.Value / ElectronMass.Value,
 	Unit:  "",
 }
 
-var TauMass = PhysicalConstant{
+var TauMass = physicalConstant{
 	Value: 3.16754e-27,
 	Unit:  "kg",
 }
 
-var SpeedOfLight = PhysicalConstant{
+var SpeedOfLight = physicalConstant{
 	Value: 299792458,
 	Unit:  "m/s",
 }
 
-var PlanckConstant = PhysicalConstant{
+var PlanckConstant = physicalConstant{
 	Value: 6.62607015e-34,
 	Unit:  "J.s",
 }
 
-var ReducedPlanckConstant = PhysicalConstant{
+var ReducedPlanckConstant = physicalConstant{
 	Value: PlanckConstant.Value / (2 * PI_),
 	Unit:  PlanckConstant.Unit,
 }
 
-var NewtonianConstantOfGravitation = PhysicalConstant{
+var NewtonianConstantOfGravitation = physicalConstant{
 	Value: 6.67430e-11,
 	Unit:  "m^3/kg/s^2",
 }
 
-var GravitationalConstant = PhysicalConstant{
+var GravitationalConstant = physicalConstant{
 	Value: NewtonianConstantOfGravitation.Value,
 	Unit:  NewtonianConstantOfGravitation.Unit,
 }
 
-var CosmologicalConstant = PhysicalConstant{
+var CosmologicalConstant = physicalConstant{
 	Value: 1.089e-52,
 	Unit:  "1/m^2",
 }
 
-var WienConstantWavelength = PhysicalConstant{
+var WienConstantWavelength = physicalConstant{
 	Value: 2.897771955e-3,
 	Unit:  "m.K",
 }
 
-var WienConstantFrequency = PhysicalConstant{
+var WienConstantFrequency = physicalConstant{
 	Value: 5.878925757e10,
 	Unit:  "Hz/K",
 }
 
-var WienConstantEntropy = PhysicalConstant{
+var WienConstantEntropy = physicalConstant{
 	Value: 3.002916077e-3,
 	Unit:  "m.K",
 }
 
-var ElementaryCharge = PhysicalConstant{
+var ElementaryCharge = physicalConstant{
 	Value: 1.602176634e-19,
 	Unit:  "C",
 }
 
-var BoltzmannConstant = PhysicalConstant{
+var BoltzmannConstant = physicalConstant{
 	Value: 1.380649e-23,
 	Unit:  "J/K",
 }
 
-var StefanBoltzmannConstant = PhysicalConstant{
+var StefanBoltzmannConstant = physicalConstant{
 	Value: stefanBoltzmannConstant(),
 	Unit:  "W/m^2/K^4",
 }
 
-var FirstRadiationConstant = PhysicalConstant{
+var FirstRadiationConstant = physicalConstant{
 	Value: 2 * PI_ * PlanckConstant.Value * pow(SpeedOfLight.Value, 2),
 	Unit:  "W.m^2",
 }
 
-var FirstRadiationConstantSpectralRadiance = PhysicalConstant{
+var FirstRadiationConstantSpectralRadiance = physicalConstant{
 	Value: 2 * PlanckConstant.Value * pow(SpeedOfLight.Value, 2),
 	Unit:  "W.m^2/sr",
 }
 
-var SecondRadiationConstant = PhysicalConstant{
+var SecondRadiationConstant = physicalConstant{
 	Value: PlanckConstant.Value * SpeedOfLight.Value * pow(BoltzmannConstant.Value, -1),
 	Unit:  "m.K",
 }
 
-var FineStructureConstant = PhysicalConstant{
+var FineStructureConstant = physicalConstant{
 	Value: 1 / 137.,
 	Unit:  "",
 }
 
-var VacuumMagneticPermeability = PhysicalConstant{
+var VacuumMagneticPermeability = physicalConstant{
 	Value: vacuumMagneticPermeability(),
 	Unit:  "N/A^2",
 }
 
-var VacuumElectricPermeability = PhysicalConstant{
+var VacuumElectricPermeability = physicalConstant{
 	Value: vacuumElectricPermeability(),
 	Unit:  "F/m",
 }
 
-var ConductanceQuantum = PhysicalConstant{
+var ConductanceQuantum = physicalConstant{
 	Value: 2 * pow(ElementaryCharge.Value, 2) / PlanckConstant.Value,
 	Unit:  "S",
 }
 
-var InverseConductanceQuantum = PhysicalConstant{
+var InverseConductanceQuantum = physicalConstant{
 	Value: 1 / ConductanceQuantum.Value,
 	Unit:  OHM_,
 }
 
-var VonKlitzingConstant = PhysicalConstant{
+var VonKlitzingConstant = physicalConstant{
 	Value: PlanckConstant.Value / pow(ElementaryCharge.Value, 2),
 	Unit:  OHM_,
 }
 
-var JosephsonConstant = PhysicalConstant{
+var JosephsonConstant = physicalConstant{
 	Value: (2 * ElementaryCharge.Value) / PlanckConstant.Value,
 	Unit:  "Hz/V",
 }
 
-var MagneticFluxQuantum = PhysicalConstant{
+var MagneticFluxQuantum = physicalConstant{
 	Value: 1 / JosephsonConstant.Value,
 	Unit:  "V.s",
 }
 
-var CharacteristicImpedanceOfVacuum = PhysicalConstant{
+var CharacteristicImpedanceOfVacuum = physicalConstant{
 	Value: characteristicImpedanceOfVacuum(),
 	Unit:  OHM_,
 }
 
-var CarbonMolarMass = PhysicalConstant{
+var CarbonMolarMass = physicalConstant{
 	Value: 12.0000000126e-3,
 	Unit:  "kg/mol",
 }
 
-var AtomicMassUnit = PhysicalConstant{
+var AtomicMassUnit = physicalConstant{
 	Value: 1.66053906892e-27,
 	Unit:  "kg",
 }
 
-var AvogadroNumber = PhysicalConstant{
+var AvogadroNumber = physicalConstant{
 	Value: 6.02214076e23,
 	Unit:  "1/mol",
 }
 
-var MolarPlanckConstant = PhysicalConstant{
+var MolarPlanckConstant = physicalConstant{
 	Value: AvogadroNumber.Value * PlanckConstant.Value,
 	Unit:  "J.s/mol",
 }
 
-var MolarGasConstant = PhysicalConstant{
+var MolarGasConstant = physicalConstant{
 	Value: AvogadroNumber.Value * BoltzmannConstant.Value,
 	Unit:  "J/mol/K",
 }
 
-var FaradayConstant = PhysicalConstant{
+var FaradayConstant = physicalConstant{
 	Value: AvogadroNumber.Value * ElementaryCharge.Value,
 	Unit:  "C/mol",
 }
 
-var MolarMassConstant = PhysicalConstant{
+var MolarMassConstant = physicalConstant{
 	Value: 1.00000000105e-3,
 	Unit:  "kg/mol",
 }
 
-var BohrRadius = PhysicalConstant{
+var BohrRadius = physicalConstant{
 	Value: bohrRadius(),
 	Unit:  "m",
 }
 
-var ClassicalElectronRadius = PhysicalConstant{
+var ClassicalElectronRadius = physicalConstant{
 	Value: classicalElectronRadius(),
 	Unit:  "m",
 }
 
-var ThomsonCrossSection = PhysicalConstant{
+var ThomsonCrossSection = physicalConstant{
 	Value: thomsonCrossSection(),
 	Unit:  "m^2",
 }
 
-var RydbergConstant = PhysicalConstant{
+var RydbergConstant = physicalConstant{
 	Value: rydbergConstant(),
 	Unit:  "1/m",
 }
