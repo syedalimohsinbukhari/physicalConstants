@@ -1,8 +1,18 @@
 package physicalConstants
 
 import (
+	"fmt"
 	"math"
 )
+
+type PhysicalConstant struct {
+	Value float64
+	Unit  string
+}
+
+func (p PhysicalConstant) Display() {
+	fmt.Println(p.Value, p.Unit)
+}
 
 const PI_ = math.Pi
 const OHM_ = "\u03A9"
